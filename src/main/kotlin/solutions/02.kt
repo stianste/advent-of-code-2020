@@ -7,7 +7,6 @@ fun main() {
 
     fun getNumberOfOccurencesInString(s: String, char: Char) = s.filter { it == char }.count()
 
-
     fun lineIsValid(line: String): Boolean {
         val (range, letter, password) = line.split(" ")
         val (minValue, maxValue) = range.split("-").map { it.toInt() }
@@ -18,8 +17,7 @@ fun main() {
         val (range, letter, password) = line.split(" ")
         val (firstIndex, secondIndex) = range.split("-").map { it.toInt() - 1 }
         val char = letter.toCharArray().first()
-        return (password[firstIndex] == char && password[secondIndex] != char)
-                || (password[firstIndex] != char && password[secondIndex] == char)
+        return (password[firstIndex] == char) xor (password[secondIndex] == char)
     }
 
     fun partOne() {
